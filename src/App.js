@@ -5,7 +5,7 @@ function App() {
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/flims")
+    fetch("http://127.0.0.1:8000/api/customer")
       .then((response) => response.json())
       .then((data) => setCustomers(data))
       .catch((error) => console.error("Error fetching customers:", error));
