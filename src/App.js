@@ -1,26 +1,75 @@
-import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from "axios";
+
+//Pages Imports
+import Home from "./pages/Home.js";
+import Country from "./pages/Country.js";
+import CountryView from "./pages/CountryView.js";
+import City from "./pages/City.js";
+import Address from "./pages/Address.js";
+import Login from "./pages/auth/Login.js";
+import Register from "./pages/auth/Register.js";
+
+//Components
+import ProtectedRoute from "./components/ProtectedRoute.js";
+
+//Component Imports
+import Menu from "./components/nav/Menu.js";
+import GeoNav from "./components/nav/GeoNav.js";
+
+//Context
+import { useAuth } from "./context/auth";
+
+//CSS Imports
 import "./App.css";
 
 function App() {
-  const [customers, setCustomers] = useState([]);
+  // context
+  const [auth, setAuth] = useAuth();
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/customer")
-      .then((response) => response.json())
-      .then((data) => setCustomers(data))
-      .catch((error) => console.error("Error fetching customers:", error));
-  }, []);
+  // axios config
+  axios.defaults.baseURL = process.env.REACT_APP_API;
+  axios.defaults.headers.common["Authorization"] = auth?.token;
 
   return (
-    <div className="App">
-      <h1>Hello from Sakila Client!</h1>
-      <h3>Customer List</h3>
-      <ul>
-        {customers.map((customer) => (
-          <li key={customer.customer_id}>{customer.first_name}</li>
-        ))}
-      </ul>
-    </div>
+    <BrowserRouter>
+      <Menu />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route
+          path="/geo"
+          element={
+            <ProtectedRoute>
+              <GeoNav />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            path=""
+            element={
+              <ProtectedRoute>
+                <Country />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="country/:countryId" element={<CountryView />} />
+          <Route path="city" element={<City />} />
+          <Route path="address" element={<Address />} />
+        </Route>
+        <Route
+          path="*"
+          element={
+            <div>
+              <h1>Page not found</h1>
+            </div>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
