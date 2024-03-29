@@ -4,25 +4,21 @@ import axios from "axios";
 
 import { useAuth } from "../context/auth";
 
-import Redirection from "./Redirection";
+import Loader from "./Loader";
 
 const ProtectedRoutes = ({ children }) => {
-  //   const isAuth = JSON.parse(localStorage.getItem("isAuth") || false);
-  //   return isAuth ? children : <Navigate to="/" />;
-
   // context
   const [auth /*, setAuth*/] = useAuth();
   // state
   const [ok, setOk] = useState(false);
 
-  console.log("Auh data from protected route: ", auth);
+  //console.log("Auh data from protected route: ", auth);
 
   useEffect(() => {
     const authCheck = async () => {
       const { data } = await axios.get(`/auth/auth-check`);
-      console.log("data: ", data);
+      //console.log("data: ", data);
       if (data.ok) {
-        console.log("setting ok as true");
         setOk(true);
       } else {
         setOk(false);
@@ -33,7 +29,7 @@ const ProtectedRoutes = ({ children }) => {
   }, [auth?.token]);
 
   //return ok ? children : <Navigate to="/" />;
-  return ok ? children : <Redirection />;
+  return ok ? children : <Loader timeInSeconds="3" />;
 };
 
 export default ProtectedRoutes;

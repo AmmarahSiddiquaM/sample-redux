@@ -117,12 +117,50 @@ const Country = () => {
               </li>
             ))}
           </ul>
-          <div>
+
+          {/* Pagination */}
+          {/* <div>
             {Array.from({ length: totalPages }, (_, i) => (
               <button key={i} onClick={() => handlePageChange(i + 1)}>
                 {i + 1}
               </button>
             ))}
+          </div> */}
+
+          <div>
+            <button
+              disabled={currentPage === 1}
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              Prev
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => {
+              const page = i + 1;
+              // Display only a subset of page numbers around the current page
+              if (
+                page === 1 ||
+                page === currentPage ||
+                page === totalPages ||
+                Math.abs(currentPage - page) <= 2
+              ) {
+                return (
+                  <button
+                    key={i}
+                    onClick={() => handlePageChange(page)}
+                    disabled={currentPage === page}
+                  >
+                    {page}
+                  </button>
+                );
+              }
+              return null;
+            })}
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Next
+            </button>
           </div>
 
           <button onClick={() => setShowCreateForm(true)}>

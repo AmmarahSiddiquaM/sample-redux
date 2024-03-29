@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate /*, useLocation*/ } from "react-router-dom";
 import LoadingGIF from "../images/loading.gif";
 
-export default function Redirection(/*{ path = "login" }*/) {
-  const [count, setCount] = useState(1);
+export default function Loader({
+  /*path = "login" */
+  timeInSeconds = 3,
+}) {
+  const [count, setCount] = useState(Number(timeInSeconds));
   const navigate = useNavigate();
   //const location = useLocation();
 

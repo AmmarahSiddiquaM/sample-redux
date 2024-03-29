@@ -23,7 +23,7 @@ export default function Login() {
         email,
         password,
       });
-      console.log(data);
+      //console.log(data);
       if (data?.error) {
         console.log(data.error);
       } else {
