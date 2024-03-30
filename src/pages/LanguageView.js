@@ -3,48 +3,48 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 
-const CountryView = () => {
-  const [country, setCountry] = useState(null);
+const LanguageView = () => {
+  const [language, setLanguage] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [newName, setNewName] = useState("");
   const [reload, setReload] = useState(false);
 
-  const { countryId } = useParams();
+  const { languageId } = useParams();
 
   useEffect(() => {
-    fetchCountry();
+    fetchLanguage();
   }, [reload]);
 
-  const fetchCountry = async () => {
+  const fetchLanguage = async () => {
     try {
-      const response = await axios.get(`/country/${countryId}`);
-      setCountry(response.data);
-      setNewName(response.data.country);
+      const response = await axios.get(`/language/${languageId}`);
+      setLanguage(response.data);
+      setNewName(response.data.name);
     } catch (error) {
-      console.error("Error fetching country:", error);
+      console.error("Error fetching language:", error);
     }
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/country/${countryId}`, { country: newName });
+      await axios.put(`/language/${languageId}`, { name: newName });
       setEditMode(false);
       setReload(!reload);
     } catch (error) {
-      console.error("Error updating country:", error);
+      console.error("Error updating language:", error);
     }
   };
 
   return (
     <div>
-      {country ? (
+      {language ? (
         <div>
           {editMode ? (
             <form onSubmit={handleUpdate}>
               <input
                 type="text"
-                placeholder={country.country}
+                placeholder={language.language}
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
               />
@@ -55,7 +55,7 @@ const CountryView = () => {
             </form>
           ) : (
             <>
-              <h2>{country.country}</h2>
+              <h2>{language.name}</h2>
               <button onClick={() => setEditMode(true)}>Edit</button>
             </>
           )}
@@ -67,4 +67,4 @@ const CountryView = () => {
   );
 };
 
-export default CountryView;
+export default LanguageView;

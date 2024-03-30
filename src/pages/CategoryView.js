@@ -3,48 +3,48 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 
-const CountryView = () => {
-  const [country, setCountry] = useState(null);
+const CategoryView = () => {
+  const [category, setCategory] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [newName, setNewName] = useState("");
   const [reload, setReload] = useState(false);
 
-  const { countryId } = useParams();
+  const { categoryId } = useParams();
 
   useEffect(() => {
-    fetchCountry();
+    fetchCategory();
   }, [reload]);
 
-  const fetchCountry = async () => {
+  const fetchCategory = async () => {
     try {
-      const response = await axios.get(`/country/${countryId}`);
-      setCountry(response.data);
-      setNewName(response.data.country);
+      const response = await axios.get(`/category/${categoryId}`);
+      setCategory(response.data);
+      setNewName(response.data.name);
     } catch (error) {
-      console.error("Error fetching country:", error);
+      console.error("Error fetching category:", error);
     }
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/country/${countryId}`, { country: newName });
+      await axios.put(`/category/${categoryId}`, { name: newName });
       setEditMode(false);
       setReload(!reload);
     } catch (error) {
-      console.error("Error updating country:", error);
+      console.error("Error updating category:", error);
     }
   };
 
   return (
     <div>
-      {country ? (
+      {category ? (
         <div>
           {editMode ? (
             <form onSubmit={handleUpdate}>
               <input
                 type="text"
-                placeholder={country.country}
+                placeholder={category.category}
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
               />
@@ -55,7 +55,7 @@ const CountryView = () => {
             </form>
           ) : (
             <>
-              <h2>{country.country}</h2>
+              <h2>{category.name}</h2>
               <button onClick={() => setEditMode(true)}>Edit</button>
             </>
           )}
@@ -67,4 +67,4 @@ const CountryView = () => {
   );
 };
 
-export default CountryView;
+export default CategoryView;

@@ -34,6 +34,21 @@ const Menu = () => {
               <NavLink to="/geo">Geo</NavLink>
             </li>
             <li>
+              <NavLink to="/actor">Actor</NavLink>
+            </li>
+            <li>
+              <NavLink to="/advisor">Advisor</NavLink>
+            </li>
+            <li>
+              <NavLink to="/investor">Investor</NavLink>
+            </li>
+            <li>
+              <NavLink to="/category">Category</NavLink>
+            </li>
+            <li>
+              <NavLink to="/language">Language</NavLink>
+            </li>
+            <li>
               <a onClick={logout}>Logout</a>
             </li>
           </>

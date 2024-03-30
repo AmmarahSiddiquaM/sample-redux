@@ -3,50 +3,61 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 
-const CountryView = () => {
-  const [country, setCountry] = useState(null);
+const ActorView = () => {
+  const [actor, setActor] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [newName, setNewName] = useState("");
+  const [newLastName, setNewLastName] = useState("");
   const [reload, setReload] = useState(false);
 
-  const { countryId } = useParams();
+  const { actorId } = useParams();
 
   useEffect(() => {
-    fetchCountry();
+    fetchActor();
   }, [reload]);
 
-  const fetchCountry = async () => {
+  const fetchActor = async () => {
     try {
-      const response = await axios.get(`/country/${countryId}`);
-      setCountry(response.data);
-      setNewName(response.data.country);
+      const response = await axios.get(`/actor/${actorId}`);
+      setActor(response.data);
+      setNewName(response.data.first_name);
+      setNewLastName(response.data.last_name);
     } catch (error) {
-      console.error("Error fetching country:", error);
+      console.error("Error fetching actor:", error);
     }
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/country/${countryId}`, { country: newName });
+      await axios.put(`/actor/${actorId}`, {
+        first_name: newName,
+        last_name: newLastName,
+      });
       setEditMode(false);
       setReload(!reload);
     } catch (error) {
-      console.error("Error updating country:", error);
+      console.error("Error updating actor:", error);
     }
   };
 
   return (
     <div>
-      {country ? (
+      {actor ? (
         <div>
           {editMode ? (
             <form onSubmit={handleUpdate}>
               <input
                 type="text"
-                placeholder={country.country}
+                placeholder={actor.first_name}
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder={actor.last_name}
+                value={newLastName}
+                onChange={(e) => setNewLastName(e.target.value)}
               />
               <button type="submit">Save</button>
               <button type="button" onClick={() => setEditMode(false)}>
@@ -55,7 +66,7 @@ const CountryView = () => {
             </form>
           ) : (
             <>
-              <h2>{country.country}</h2>
+              <h2>{`${actor.first_name}${actor.last_name}`}</h2>
               <button onClick={() => setEditMode(true)}>Edit</button>
             </>
           )}
@@ -67,4 +78,4 @@ const CountryView = () => {
   );
 };
 
-export default CountryView;
+export default ActorView;
