@@ -37,6 +37,9 @@ const Menu = () => {
               <NavLink to="/actor">Actor</NavLink>
             </li>
             <li>
+              <NavLink to="/film">Film</NavLink>
+            </li>
+            <li>
               <NavLink to="/advisor">Advisor</NavLink>
             </li>
             <li>

@@ -8,8 +8,11 @@ import CountryView from "./pages/CountryView.js";
 import City from "./pages/City.js";
 import CityView from "./pages/CityView.js";
 import Address from "./pages/Address.js";
+import AddressView from "./pages/AddressView.js";
 import Actor from "./pages/Actor.js";
 import ActorView from "./pages/ActorView.js";
+import Film from "./pages/Film.js";
+import FilmView from "./pages/FilmView.js";
 import Advisor from "./pages/Advisor.js";
 import AdvisorView from "./pages/AdvisorView.js";
 import Investor from "./pages/Investor.js";
@@ -26,6 +29,7 @@ import ProtectedRoute from "./components/ProtectedRoute.js";
 import Menu from "./components/nav/Menu.js";
 import GeoNav from "./components/nav/GeoNav.js";
 import ActorNav from "./components/nav/ActorNav.js";
+import FilmNav from "./components/nav/FilmNav.js";
 
 //Context
 import { useAuth } from "./context/auth";
@@ -99,6 +103,15 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="address/:addressId"
+            element={
+              <ProtectedRoute>
+                <AddressView />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
         <Route
@@ -122,6 +135,32 @@ function App() {
             element={
               <ProtectedRoute>
                 <ActorView />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+
+        <Route
+          path="/film"
+          element={
+            <ProtectedRoute>
+              <FilmNav />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            path=""
+            element={
+              <ProtectedRoute>
+                <Film />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="film/:filmId"
+            element={
+              <ProtectedRoute>
+                <FilmView />
               </ProtectedRoute>
             }
           />
