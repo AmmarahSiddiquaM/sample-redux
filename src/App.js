@@ -19,6 +19,8 @@ import Advisor from "./pages/Advisor.js";
 import AdvisorView from "./pages/AdvisorView.js";
 import Investor from "./pages/Investor.js";
 import InvestorView from "./pages/InvestorView.js";
+import Customer from "./pages/Customer.js";
+import CustomerView from "./pages/CustomerView.js";
 import Category from "./pages/Category.js";
 import CategoryView from "./pages/CategoryView.js";
 import Language from "./pages/Language.js";
@@ -249,6 +251,23 @@ function App() {
           element={
             <ProtectedRoute>
               <InventoryView />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/customer"
+          element={
+            <ProtectedRoute>
+              <Customer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/customer/:customerId"
+          element={
+            <ProtectedRoute>
+              <CustomerView />
             </ProtectedRoute>
           }
         />

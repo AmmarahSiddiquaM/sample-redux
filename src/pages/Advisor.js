@@ -154,7 +154,7 @@ const Advisor = () => {
             type="checkbox"
             //value={newAdvisorLastName}
             onChange={(e) => setIsChairman(e.target.checked)}
-            placeholder="Enter advisor second name"
+            placeholder="Enter advisor chairman status"
           />
           <button onClick={handleCreateAdvisor}>Create</button>
           <button onClick={() => setShowCreateForm(false)}>Cancel</button>

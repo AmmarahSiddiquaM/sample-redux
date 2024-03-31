@@ -49,6 +49,9 @@ const Menu = () => {
               <NavLink to="/investor">Investor</NavLink>
             </li>
             <li>
+              <NavLink to="/customer">Customer</NavLink>
+            </li>
+            <li>
               <NavLink to="/category">Category</NavLink>
             </li>
             <li>
