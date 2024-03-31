@@ -40,6 +40,9 @@ const Menu = () => {
               <NavLink to="/film">Film</NavLink>
             </li>
             <li>
+              <NavLink to="/inventory">Inventory</NavLink>
+            </li>
+            <li>
               <NavLink to="/advisor">Advisor</NavLink>
             </li>
             <li>

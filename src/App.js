@@ -13,6 +13,8 @@ import Actor from "./pages/Actor.js";
 import ActorView from "./pages/ActorView.js";
 import Film from "./pages/Film.js";
 import FilmView from "./pages/FilmView.js";
+import Inventory from "./pages/Inventory.js";
+import InventoryView from "./pages/InventoryView.js";
 import Advisor from "./pages/Advisor.js";
 import AdvisorView from "./pages/AdvisorView.js";
 import Investor from "./pages/Investor.js";
@@ -230,6 +232,23 @@ function App() {
           element={
             <ProtectedRoute>
               <LanguageView />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/inventory"
+          element={
+            <ProtectedRoute>
+              <Inventory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/inventory/:inventoryId"
+          element={
+            <ProtectedRoute>
+              <InventoryView />
             </ProtectedRoute>
           }
         />
