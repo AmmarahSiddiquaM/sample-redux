@@ -7,9 +7,9 @@ const ActorNav = () => {
         <li>
           <NavLink to="./">Actor</NavLink>
         </li>
-        {/* <li>
+        <li>
           <NavLink to="./award">Actor Award</NavLink>
-        </li> */}
+        </li>
       </ul>
 
       <Outlet />

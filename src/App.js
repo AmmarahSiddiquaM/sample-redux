@@ -11,6 +11,7 @@ import Address from "./pages/Address.js";
 import AddressView from "./pages/AddressView.js";
 import Actor from "./pages/Actor.js";
 import ActorView from "./pages/ActorView.js";
+import ActorAward from "./pages/ActorAward.js";
 import Film from "./pages/Film.js";
 import FilmView from "./pages/FilmView.js";
 import Inventory from "./pages/Inventory.js";
@@ -134,8 +135,18 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
-            path="actor/:actorId"
+            path="award"
+            element={
+              <ProtectedRoute>
+                <ActorAward />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path=":actorId"
             element={
               <ProtectedRoute>
                 <ActorView />

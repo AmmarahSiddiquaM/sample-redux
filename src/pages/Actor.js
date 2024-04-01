@@ -69,7 +69,7 @@ const Actor = () => {
   // };
 
   const handleNavigateActor = (id) => {
-    navigate(`./actor/${id}`);
+    navigate(`./${id}`);
   };
 
   const handlePageChange = (page) => {
