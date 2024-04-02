@@ -19,12 +19,17 @@ import FilmActor from "./pages/FilmActor.js";
 import FilmCategory from "./pages/FilmCategory.js";
 import Inventory from "./pages/Inventory.js";
 import InventoryView from "./pages/InventoryView.js";
+import Rental from "./pages/Rental.js";
+import Payment from "./pages/Payment.js";
 import Advisor from "./pages/Advisor.js";
 import AdvisorView from "./pages/AdvisorView.js";
 import Investor from "./pages/Investor.js";
 import InvestorView from "./pages/InvestorView.js";
 import Customer from "./pages/Customer.js";
 import CustomerView from "./pages/CustomerView.js";
+import Staff from "./pages/Staff.js";
+import StaffView from "./pages/StaffView.js";
+import Store from "./pages/Store.js";
 import Category from "./pages/Category.js";
 import CategoryView from "./pages/CategoryView.js";
 import Language from "./pages/Language.js";
@@ -288,6 +293,23 @@ function App() {
         />
 
         <Route
+          path="/rental"
+          element={
+            <ProtectedRoute>
+              <Rental />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <ProtectedRoute>
+              <Payment />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/customer"
           element={
             <ProtectedRoute>
@@ -300,6 +322,32 @@ function App() {
           element={
             <ProtectedRoute>
               <CustomerView />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/staff"
+          element={
+            <ProtectedRoute>
+              <Staff />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/staff/:staffId"
+          element={
+            <ProtectedRoute>
+              <StaffView />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/store"
+          element={
+            <ProtectedRoute>
+              <Store />
             </ProtectedRoute>
           }
         />

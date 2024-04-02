@@ -43,6 +43,12 @@ const Menu = () => {
               <NavLink to="/inventory">Inventory</NavLink>
             </li>
             <li>
+              <NavLink to="/rental">Rental</NavLink>
+            </li>
+            <li>
+              <NavLink to="/payment">Payment</NavLink>
+            </li>
+            <li>
               <NavLink to="/advisor">Advisor</NavLink>
             </li>
             <li>
@@ -50,6 +56,12 @@ const Menu = () => {
             </li>
             <li>
               <NavLink to="/customer">Customer</NavLink>
+            </li>
+            <li>
+              <NavLink to="/staff">Staff</NavLink>
+            </li>
+            <li>
+              <NavLink to="/store">Store</NavLink>
             </li>
             <li>
               <NavLink to="/category">Category</NavLink>
