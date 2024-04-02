@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 //Pages
 import Home from "./pages/Home.js";
@@ -14,6 +15,8 @@ import ActorView from "./pages/ActorView.js";
 import ActorAward from "./pages/ActorAward.js";
 import Film from "./pages/Film.js";
 import FilmView from "./pages/FilmView.js";
+import FilmActor from "./pages/FilmActor.js";
+import FilmCategory from "./pages/FilmCategory.js";
 import Inventory from "./pages/Inventory.js";
 import InventoryView from "./pages/InventoryView.js";
 import Advisor from "./pages/Advisor.js";
@@ -53,6 +56,7 @@ function App() {
   return (
     <BrowserRouter>
       <Menu />
+      <Toaster position="top-right" />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -171,8 +175,25 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
-            path="film/:filmId"
+            path="actor"
+            element={
+              <ProtectedRoute>
+                <FilmActor />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="category"
+            element={
+              <ProtectedRoute>
+                <FilmCategory />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path=":filmId"
             element={
               <ProtectedRoute>
                 <FilmView />

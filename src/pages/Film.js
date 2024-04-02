@@ -92,7 +92,7 @@ const Film = () => {
   // };
 
   const handleNavigateFilm = (id) => {
-    navigate(`./film/${id}`);
+    navigate(`./${id}`);
   };
 
   const handlePageChange = (page) => {
