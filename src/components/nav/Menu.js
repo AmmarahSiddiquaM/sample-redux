@@ -31,6 +31,9 @@ const Menu = () => {
         ) : (
           <>
             <li>
+              <NavLink to="/report">Reports</NavLink>
+            </li>
+            <li>
               <NavLink to="/geo">Geo</NavLink>
             </li>
             <li>

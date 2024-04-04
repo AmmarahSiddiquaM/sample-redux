@@ -37,12 +37,29 @@ import LanguageView from "./pages/LanguageView.js";
 import Login from "./pages/auth/Login.js";
 import Register from "./pages/auth/Register.js";
 
+//Pages - Reports
+import InventoryReport from "./pages/reports/Inventory.js";
+import InventoryRatingReport from "./pages/reports/InventoryRating.js";
+import InventoryCountReport from "./pages/reports/InventoryCount.js";
+import InventoryUniqueCountReport from "./pages/reports/InventoryUniqueCount.js";
+import CustomerReport from "./pages/reports/Customer.js";
+import CustomerRentalReport from "./pages/reports/CustomerRentals.js";
+import CustomerActiveCountReport from "./pages/reports/CustomerActiveCount.js";
+import CustomerEmailCountReport from "./pages/reports/CustomerEmailCount.js";
+import StoreReport from "./pages/reports/Store.js";
+import InvestorAdvisorReport from "./pages/reports/InvestorAdvisor.js";
+import ActorAwardReport from "./pages/reports/ActorAward.js";
+import PaymentAverageReport from "./pages/reports/PaymentAverage.js";
+import ReplacementCostReport from "./pages/reports/ReplacementCost.js";
+import ReplacementCostCategoryReport from "./pages/reports/ReplacementCostCategory.js";
+
 //Components
 import ProtectedRoute from "./components/ProtectedRoute.js";
 import Menu from "./components/nav/Menu.js";
 import GeoNav from "./components/nav/GeoNav.js";
 import ActorNav from "./components/nav/ActorNav.js";
 import FilmNav from "./components/nav/FilmNav.js";
+import ReportNav from "./components/nav/ReportNav.js";
 
 //Context
 import { useAuth } from "./context/auth";
@@ -67,6 +84,139 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        <Route
+          path="/report"
+          element={
+            <ProtectedRoute>
+              <ReportNav />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            path=""
+            element={
+              <ProtectedRoute>
+                <InventoryReport />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="inventory-rating"
+            element={
+              <ProtectedRoute>
+                <InventoryRatingReport />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="inventory-count"
+            element={
+              <ProtectedRoute>
+                <InventoryCountReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="inventory-unique-count"
+            element={
+              <ProtectedRoute>
+                <InventoryUniqueCountReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="customer"
+            element={
+              <ProtectedRoute>
+                <CustomerReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="customer-rentals"
+            element={
+              <ProtectedRoute>
+                <CustomerRentalReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="customer-active-count"
+            element={
+              <ProtectedRoute>
+                <CustomerActiveCountReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="customer-email-count"
+            element={
+              <ProtectedRoute>
+                <CustomerEmailCountReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="store"
+            element={
+              <ProtectedRoute>
+                <StoreReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="investor-advisor"
+            element={
+              <ProtectedRoute>
+                <InvestorAdvisorReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="actor-award"
+            element={
+              <ProtectedRoute>
+                <ActorAwardReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="payment-average"
+            element={
+              <ProtectedRoute>
+                <PaymentAverageReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="replacement-cost"
+            element={
+              <ProtectedRoute>
+                <ReplacementCostReport />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="replacement-cost-category"
+            element={
+              <ProtectedRoute>
+                <ReplacementCostCategoryReport />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
 
         <Route
           path="/geo"
