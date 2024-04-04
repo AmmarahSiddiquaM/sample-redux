@@ -4,8 +4,24 @@ import { useNavigate, Navigate /*, useLocation */ } from "react-router-dom";
 
 //Context
 import { useAuth } from "../../context/auth";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Login() {
+  //sample
+  // const dispatch = useDispatch();
+  // const {
+  //   isAuthenticated,
+  //   isLoginFail,
+  //   loading,
+  //   idToken,
+  //   accessToken,
+  //   refreshToken,
+  // } = useSelector((state) => state.auth);
+
+  // const onPressLogin = () => {
+  //   dispatch(login({ userId: userid, clientNo: clientno }));
+  // };
+
   //State
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
