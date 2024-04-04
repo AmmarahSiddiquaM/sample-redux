@@ -36,6 +36,7 @@ import Language from "./pages/Language.js";
 import LanguageView from "./pages/LanguageView.js";
 import Login from "./pages/auth/Login.js";
 import Register from "./pages/auth/Register.js";
+import Callback from "./pages/auth/Callback.js";
 
 //Pages - Reports
 import InventoryReport from "./pages/reports/Inventory.js";
@@ -84,6 +85,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/auth/callback" element={<Callback />} />
 
         <Route
           path="/report"

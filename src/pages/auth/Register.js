@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate /*, useLocation*/ } from "react-router-dom";
+import { useNavigate, Navigate /*, useLocation*/ } from "react-router-dom";
 
 //Context
 import { useAuth } from "../../context/auth";
@@ -45,32 +45,40 @@ export default function Login() {
   };
   return (
     <>
-      <h1>Register Page</h1>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            value={email}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      {!auth?.user ? (
+        <>
+          <h1>Register Page</h1>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                value={email}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
 
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </>
+      ) : (
+        <>
+          <Navigate to="/" />
+        </>
+      )}
     </>
   );
 }

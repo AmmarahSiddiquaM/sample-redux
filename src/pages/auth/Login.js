@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate /*, useLocation */ } from "react-router-dom";
+import { useNavigate, Navigate /*, useLocation */ } from "react-router-dom";
 
 //Context
 import { useAuth } from "../../context/auth";
@@ -9,6 +9,7 @@ export default function Login() {
   //State
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [googleAuthUrl, setGoogleAuthUrl] = useState("");
 
   //Hooks
   const [auth, setAuth] = useAuth();
@@ -42,28 +43,52 @@ export default function Login() {
       //toast.error("Login failed. Try again.");
     }
   };
+
+  const handleGoogleAuth = async () => {
+    try {
+      console.log("calling google auth...");
+      const { data } = await axios.get(`/auth/google`);
+      setGoogleAuthUrl(data.google_redirection_url);
+    } catch (err) {
+      console.log(err);
+      //toast.error("Login failed. Try again.");
+    }
+  };
+
+  if (googleAuthUrl) {
+    window.location.href = googleAuthUrl; // Redirect to Google authentication page
+  }
   return (
     <>
-      <h1>Login Page</h1>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      {!auth?.user ? (
+        <>
+          <h1>Login Page</h1>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
 
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+              <button type="submit">Submit</button>
+            </form>
+            <button onClick={handleGoogleAuth}>Sigin in with Google</button>
+          </div>
+        </>
+      ) : (
+        <>
+          <Navigate to="/" />
+        </>
+      )}
     </>
   );
 }
